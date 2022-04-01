@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# While using commands use the full path to that path because it is a security feature
+
+fullpath="$(pwd)/$file"
+
+while read file
+do
+    case "$1" in
+        "d")
+            /usr/bin/rm "$file" ;;
+        "s")
+            $HOME/.local/bin/setbg "$file" ;;
+        "r")
+            /usr/bin/convert -rotate 90 "$file" "$file" ;;
+        "R")
+            /usr/bin/convert -rotate -90 "$file" "$file" ;;
+        esac
+    done

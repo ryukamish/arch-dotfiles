@@ -1,0 +1,15 @@
+#Alias
+                               
+alias c='clear'
+##ls alias
+alias ls='ls --group-directories-first --color=auto'
+alias la='ls -a --group-directories-first --color=auto'
+alias ll='ls -lAh --group-directories-first --color=auto'
+##grep alias
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+#vim and emacs
+alias vim="nvim"
+
