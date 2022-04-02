@@ -1,3 +1,6 @@
+# Dependencies:
+#   bash-completion (for bash)
+
 $include /etc/inputrc
 
 # Set up Vim-style tab completion
