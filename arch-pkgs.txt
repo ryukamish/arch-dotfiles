@@ -23,7 +23,7 @@ jq
 libnotify
 libtool
 libxft-bgra
-linux
+linux-zen
 linux-firmware
 m4
 make
@@ -59,7 +59,8 @@ xclip
 xcompmgr
 xdotool
 xf86-video-fbdev
-xf86-video-vmware
+xf86-video-intel
+xf86-video-amdgpu
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
