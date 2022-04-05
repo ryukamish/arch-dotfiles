@@ -25,11 +25,3 @@ export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
 fi
-
-## ssh-agent
-#eval $(ssh-agent)
-
-## Readline variables
-#set completion-ignore-case on
-#set colored-stats on            # Sets the readline display possible completions using different colors
-#set blink-matching-paren on    # attempts to briefly move the cursor to an opening parenthesis when a closing parenthesis is inserted
