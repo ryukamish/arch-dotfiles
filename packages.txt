@@ -1,5 +1,6 @@
 autoconf
 automake
+baph
 base
 bash-completion
 bison
@@ -58,7 +59,7 @@ xclip
 xcompmgr
 xdotool
 xf86-video-fbdev
-xf86-video-intel
+xf86-video-vmware
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
