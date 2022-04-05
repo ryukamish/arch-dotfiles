@@ -39,9 +39,12 @@ patch
 pipewire
 pkgconf
 polkit
+pup
 python
 python-pip
 python-pywal
+recode
+rust
 sudo
 sxiv
 texinfo
@@ -50,6 +53,7 @@ ttf-font-awesome
 ttf-jetbrains-mono
 ttf-joypixels
 ttf-symbola
+tuxi-git
 unclutter
 unzip
 vim
@@ -109,5 +113,6 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xwallpaper
+yt-dlp
 zathura
 zathura-pdf-mupdf
