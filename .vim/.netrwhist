@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/kunal/.local/src/dwm'
+let g:netrw_dirhist_7='/home/kunal'
+let g:netrw_dirhist_6='/home/kunal/.vim'
+let g:netrw_dirhist_5='/etc/X11'
+let g:netrw_dirhist_4='/etc/X11/xorg.conf.d'
+let g:netrw_dirhist_3='/home/kunal/.local/src/st'
+let g:netrw_dirhist_2='/etc/X11/xorg.conf.d'
+let g:netrw_dirhist_1='/home/kunal/.local/src/dwm'
