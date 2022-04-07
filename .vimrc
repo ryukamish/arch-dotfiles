@@ -22,7 +22,7 @@ set number                  " Adding numbers on left
 set shiftwidth=4            " Set shift width to 4 spaces
 set tabstop=4               " Set tab width to 4 spaces
 set expandtab               " Use space characters instead of tabs
-set nobackup                " No swap file
+set uc=0                    " No swap file
 set incsearch               " Highlighting matching characters as you type
 set ignorecase              " Ignore capital letters during search
 set smartcase               " search specifically for capital letters
@@ -32,9 +32,14 @@ set hlsearch                " Use highlighting when doing a search
 set history=1000            " Commands to save in history
 set clipboard+=unnamedplus  " To help copy/paste things from here and there
 set wildmenu                " Enable auto completion menu after pressing TAB
-set wildmode=list:longest   " Make wildmenu behave like similar to Bash completion
+set wildmode=list,longest,full   " Make wildmenu behave like similar to Bash completion
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-set title
+set title                   " To open and jump to another buffer without closing vim
+" Disable auto commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" => Color Scheme
+" colorscheme molokai
 
 " => Fold long files
 augroup filetype_vim
