@@ -39,6 +39,7 @@ fi
 
 /home/kunal/.local/bin/setbg &
 /usr/local/bin/slstatus &
+$HOME/.local/bin/remaps &
 dunst &
 xcompmgr &
 unclutter --timeout 3 &
