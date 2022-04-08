@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# To increase the x rate of key presses
+xset r rate 250 50
