@@ -37,7 +37,7 @@ if [ -r $HOME/.local/bin ]; then
    $HOME/.local/bin/setbg &
 fi
 
-/home/kunal/.local/bin/setbg &
+$HOME/.local/bin/setbg &
 /usr/local/bin/slstatus &
 $HOME/.local/bin/remaps &
 dunst &

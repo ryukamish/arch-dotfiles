@@ -12,7 +12,7 @@
 " => Assigning mapleader key
 let mapleader =","
 
-" Basic Settings ----------------------------------------------------------------- {{{
+" => Basic Settings
 
 set nocompatible            " Disable compatibility with vi which cause unexpected issues
 filetype on                 " Enable type file detection
@@ -39,19 +39,13 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set title                   " Sets the title of the file opened
 set path+=**                " To open and jump to another buffer without closing vim
 
-" }}}
-
 " Disable auto commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Color Scheme --------------------------------------------{{{
-
+" Color Scheme
 colorscheme molokai
 
-" }}}
-
-" Fold long files -----------------------------------------------------{{{
-
+" => Fold long files
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
@@ -64,9 +58,7 @@ augroup END
 " zR => to open all folds
 " zM => to close all folds
 
-" }}}
-
-" Plugins ------------------------------{{{
+" => Plugins
 " Run the below command for a pluging manager
 " $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -82,9 +74,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
 
 call plug#end()
-" }}}
 
-" Map keyboard shortcuts --------------------------{{{
+" Map keyboard shortcuts
 " nnoremap => Allows to map keys in normal mode
 " inoremap => Allows to map keys in insert mode
 " vnoremap => Allows to map keys in visual mode
@@ -105,27 +96,23 @@ noremap <c-up> <c-w>+
 noremap <c-down> <c-w>-
 noremap <c-left> <c-w>>
 noremap <c-right> <c-w><
-"}}}
 
-" Status Line ----------------------------------{{{
-
+" => Status Line
 " Clear status line when vimrc is reloaded.
 set statusline=
 
 " Status line left side.
 set statusline+=\ %F\ %M\ %Y\ %R
-"
-" " Use a divider to separate the left side from the right side.
-set statusline+=%=
-"
-" " Status line right side.
-set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
-"
-" " Show the status on the second to last line.
-set laststatus=2
-"}}}
 
-" Saving file options -----------------------------{{{
+" Use a divider to separate the left side from the right side.
+set statusline+=%=
+
+" Status line right side.
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+
+" Show the status on the second to last line.
+set laststatus=2
+
+" => Saving file options
 " Save file as sudo on files that requires root permission
-    cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-    " }}}
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!

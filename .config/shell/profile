@@ -1,27 +1,14 @@
 #
-# ~/.bashrc
+# ~/.bash_profile
 #
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+[[ -f ~/.bashrc ]] && . ~/.bashrc
 
-## Custom BASH PROMPT
-PS1=' [\e[1;32m\u\e[0m@  at \@ \W]$ '
+export PATH=$PATH:$HOME/.local/bin
+export EDITOR="nvim"
+export BROWSER="brave"
 
-## Local bin path added
-if [ -r $HOME/.local/bin/ ]; then
-	PATH=$PATH:$HOME/.local/bin
-fi
-
-## Bash alias file
-if [ -r $HOME/.config/shell ]; then
-    source $HOME/.config/shell/aliasrc
-fi
-
-## inputrc source
-export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
-
-## bash completion
-if [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion
-fi
+# To start startx if on tty1 automatically
+[ -z $DISPLAY ] && [ $(tty) = /dev/tty1 ] && exec startx || exit 1
+# Calling key maps remapped
+[ -r $HOME/.local/bin/ ] && remaps || return 0

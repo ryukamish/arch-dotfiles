@@ -1,4 +1,7 @@
 #!/bin/sh
 
 # To increase the x rate of key presses
+# xset r rate [delay [rate]]
 xset r rate 250 50
+# Remapping caps as escape key
+setxkbmap -option caps:escape

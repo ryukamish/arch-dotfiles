@@ -6,3 +6,8 @@ About
 
 This is dotfiles repo for my personal use and
 for anyone to clone and use it.
+
+What to do with this
+--------------------
+
+Could use GNU stow for managing dotfiles.

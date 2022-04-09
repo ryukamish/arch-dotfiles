@@ -9,19 +9,13 @@
 PS1='[\e[1;32m\u\e[0m@  at \@ \w]$ '
 
 ## Local bin path added
-if [ -r $HOME/.local/bin/ ]; then
-	PATH=$PATH:$HOME/.local/bin
-fi
+[ -r $HOME/.local/bin ] && PATH=$PATH:$HOME/.local/bin
 
 ## Bash alias file
-if [ -r $HOME/.config/shell ]; then
-    source $HOME/.config/shell/aliasrc
-fi
+[ -r $HOME/.config/shell ] && source $HOME/.config/shell/aliasrc
 
 ## inputrc source
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 
 ## bash completion
-if [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion
-fi
+[ -f /etc/bash_completion ] && source /etc/bash_completion
