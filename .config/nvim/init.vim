@@ -13,6 +13,7 @@ set hidden			            " Needed to keep multiple buffers open
 set autoindent                  " Indent a new line the same amount as the line just typed
 set t_Co=256			        " Sets if term supports 256 colors
 set ttyfast                     " Speed up scrolling in Vim
+set encoding=utf-8
 set incsearch			        " Incremental search
 syntax enable                   " Turn syntax-highlighting on
 set nohlsearch                  " No highlighting while searching
@@ -27,6 +28,8 @@ set smarttab			        " Be smart using tabs
 set shiftwidth=4		        " One tab == four spaces
 set tabstop=4 			        " One tab == four spaces
 set noswapfile
+" Perform dot commands over visual blocks:
+    vnoremap . :normal .<CR>
 
 " => Map keyboard shortcuts
 " nnoremap => Allows to map keys in normal mode
@@ -38,7 +41,13 @@ nnoremap <space> :
 
 " => Plugins
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin("~/.vim/plugged")
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+    echo "Downloading junegunn/vim-plug to manage plugins..."
+    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
+
+call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 
     Plug 'preservim/nerdtree'
     Plug 'vim-airline/vim-airline'
@@ -60,3 +69,8 @@ set fillchars+=vert:\
      autocmd BufWritePre * %s/\n\+\%$//e
      autocmd BufWritePre *.[ch] %s/\%$/\r/e
      autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+
+" Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
+if &diff
+    highlight! link DiffText MatchParen
+endif
