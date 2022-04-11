@@ -1,46 +1,12 @@
 #!/bin/sh
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
-
-# merge in defaults and keymaps
-
-if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
+    . "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+else
+    . "$HOME/.xprofile"
 fi
 
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
+ssh-agent dwm
 
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
-fi
-
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
-
-# start some nice programs
-
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
- for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-  [ -x "$f" ] && . "$f"
- done
- unset f
-fi
-
-# Local binary directory
-if [ -r $HOME/.local/bin ]; then
-   $HOME/.local/bin/setbg &
-fi
-
-$HOME/.local/bin/setbg &
-/usr/local/bin/slstatus &
-$HOME/.local/bin/remaps &
-dunst &
-xcompmgr &
-unclutter --timeout 3 &
+# while loop for dwm; a hot reload for pywal wallpaper colorscheme change
 while type dwm >/dev/null ; do dwm && continue || break ; done
