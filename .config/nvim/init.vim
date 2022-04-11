@@ -45,6 +45,9 @@ set number relativenumber       " Enabling numbers relative
 " Remapping space for : character:
     nnoremap <space> :
 
+" Color scheme
+    colorscheme molokai
+
 " Plugins
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -56,6 +59,8 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'vimwiki/vimwiki'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'roxma/nvim-completion-manager'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -63,10 +68,16 @@ call plug#end()
     map <leader>n :NERDTreeToggle<CR>
 
 " Shortcutting split navigation, saving a keypress:
-    map <C-h> <C-w>h
-    map <C-j> <C-w>j
-    map <C-k> <C-w>k
-    map <C-l> <C-w>l
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+
+" Resize split windows using arrow keys by pressing:
+    nnoremap <c-up> <c-w>+
+    nnoremap <c-down> <c-w>-
+    nnoremap <c-left> <c-w>>
+    nnoremap <c-right> <c-w><
 
 " Check file in shellcheck:
     map <leader>s :!clear && shellcheck -x %<CR>
