@@ -34,6 +34,7 @@ neovim
 nerd-fonts-source-code-pro
 net-tools
 networkmanager
+noto-fonts-emoji
 os-prober
 otf-symbola
 patch
