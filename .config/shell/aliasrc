@@ -1,5 +1,5 @@
 #Alias
-                               
+
 alias c='clear'
 ##ls alias
 alias ls='ls --group-directories-first --color=auto'
@@ -13,3 +13,5 @@ alias egrep='egrep --color=auto'
 #vim and emacs
 alias vim="nvim"
 
+# wget
+alias wget='wget -c'
