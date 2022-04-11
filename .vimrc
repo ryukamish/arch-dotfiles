@@ -80,7 +80,6 @@ call plug#end()
 " inoremap => Allows to map keys in insert mode
 " vnoremap => Allows to map keys in visual mode
 
-inoremap jj <ESC>
 " Remaping space for : character
 nnoremap <space> :
 " You can split the window in Vim by typing :split or :vsplit.
