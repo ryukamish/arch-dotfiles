@@ -7,12 +7,11 @@ echo "Setting random wallpaper..."
 xwallpaper --zoom "$wall"
 
 echo "Generating pywal colorschemes..."
-wal -c
-wal -i $wall >/dev/null
+wal -c && wal -i $wall >/dev/null
 sed -i 'N;$!P;D' $HOME/.cache/wal/colors-wal-dwm.h
 
 echo "Recompiling dwm..."
 (cd $HOME/.local/src/dwm && sudo make clean install>/dev/null)
-notify-send -u critical "Restart dwm..."
+notify-send -u critical "Pywal" "Restart dwm for the new look! ;)"
 
-echo "Restart dwm for the new look"
+echo "Restart dwm for the new look! ;)"
