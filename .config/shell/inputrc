@@ -6,6 +6,14 @@ $if mode=vi
     set vi-ins-mode-string \1\e[6 q\2
     set vi-cmd-mode-string \1\e[2 q\2
 
+    # If a tab-completed file is a symlink to a directory
+    # treat it like a directory not a file
+    set mark-symlinked-directories on
+    # Use GNU ls colors when tab-completing files
+    set colored-stats on
+    # Set completion ignore case
+    set completion-ignore-case on
+
     set keymap vi-command
     # these are for vi-command
     Control-l: clear-screen
