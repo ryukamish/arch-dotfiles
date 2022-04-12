@@ -53,7 +53,7 @@ ttf-fira-code
 ttf-font-awesome
 ttf-jetbrains-mono
 ttf-joypixels
-ttf-symbola
+ttf-linux-libertine
 unclutter
 unzip
 vim
