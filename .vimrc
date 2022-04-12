@@ -115,3 +115,6 @@ set laststatus=2
 " => Saving file options
 " Save file as sudo on files that requires root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" Dwmblocks automatically recompile and run when editing the source code:
+    autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
