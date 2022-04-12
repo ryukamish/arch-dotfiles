@@ -102,3 +102,6 @@ call plug#end()
 if &diff
     highlight! link DiffText MatchParen
 endif
+
+" Dwmblocks automatically recompile and run when editing the source code:
+    autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
