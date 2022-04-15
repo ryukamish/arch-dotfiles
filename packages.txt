@@ -25,7 +25,7 @@ jq
 libnotify
 libtool
 libxft-bgra
-linux
+linux-zen
 linux-firmware
 m4
 make
@@ -49,7 +49,6 @@ rust
 sudo
 sxiv
 texinfo
-ttf-fira-code
 ttf-font-awesome
 ttf-jetbrains-mono
 ttf-joypixels
