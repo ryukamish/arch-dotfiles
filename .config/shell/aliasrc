@@ -17,7 +17,7 @@ alias gc='git commit -m'
 alias gp='git push origin main'
 
 #vim and emacs
-alias vim="nvim"
+alias nv="nvim"
 
 # wget
 alias wget='wget -c'
