@@ -51,18 +51,18 @@ set number relativenumber       " Enabling numbers relative
 " Plugins
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-
-    Plug 'preservim/nerdtree'
-    Plug 'vim-airline/vim-airline'
-    Plug 'ap/vim-css-color'
-    Plug 'vimwiki/vimwiki'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'roxma/nvim-completion-manager'
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-
-call plug#end()
+"call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
+"
+ "   Plug 'preservim/nerdtree'
+ "   Plug 'vim-airline/vim-airline'
+ "   Plug 'ap/vim-css-color'
+ "   Plug 'vimwiki/vimwiki'
+ "   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ "   Plug 'roxma/nvim-completion-manager'
+ "   Plug 'SirVer/ultisnips'
+ "   Plug 'honza/vim-snippets'
+"
+"call plug#end()
 
 " Nerd tree:
     map <leader>n :NERDTreeToggle<CR>
