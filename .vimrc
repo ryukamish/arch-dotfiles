@@ -117,7 +117,7 @@ set laststatus=2
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Dwmblocks automatically recompile and run when editing the source code:
-    autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
+    autocmd BufWritePost ~/.local/src/slstatus/config.h !cd ~/.local/src/slstatus/; sudo make clean install && { killall -q slstatus;setsid slstatus & }
 
 "Mode Settings
 
