@@ -8,7 +8,7 @@ while read file
 do
     case "$1" in
         "d")
-            [ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] /usr/bin/rm "$file" && notify-send "$file deleted." ;;
+            [ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && /usr/bin/rm "$file" && notify-send "$file deleted." ;;
         "w")
             $HOME/.local/bin/setbg "$file" ;;
         "r")
