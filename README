@@ -4,15 +4,34 @@ DOTFILES
 About
 -----
 
-This is dotfiles repo for my personal use and
-for anyone to clone and use it.
+This is a personal dotfiles repo for my personal
+use case.
+
+Inspired from and shamlessly scripts taken from:
+https://github.com/LukeSmithxyz/voidrice
 
 Initial Setup
 -------------
 
-Symlinks are made for xprofile and zprofile but if not then make them.
+Just copy the files from this repo to `$HOME/.config` directory,
+or if feeling lazy just download `GNU stow` through the package manager
+and do the stuff. Alternatively, this repo could be cloned directly to the
+`$HOME/.config` directory.
 
-Shell
------
+Symlinks are made for xprofile and zprofile.
+This assumes that zsh is the default shell,
+if using `bash` then change the name to `.bash_profile`.
 
-The default shell used here is zsh but bash config is also present.
+Programs
+--------
+
+The following program's config are available:
+    dunst
+    git
+    lf (AUR terminal file browser)
+    mpv
+    neovim
+    sxiv (image viewer)
+    zathura (file viewer, especially for pdfs)
+    zsh (the default shell)
+    X11 (needless to say)
