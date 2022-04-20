@@ -46,26 +46,20 @@ set number relativenumber       " Enabling numbers relative
     nnoremap <space> :
 
 " Color scheme
-    colorscheme molokai
+    colorscheme jellybeans
 
-" Plugins
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" => Plugins
 
-"call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-"
- "   Plug 'preservim/nerdtree'
- "   Plug 'vim-airline/vim-airline'
- "   Plug 'ap/vim-css-color'
- "   Plug 'vimwiki/vimwiki'
- "   Plug 'neoclide/coc.nvim', {'branch': 'release'}
- "   Plug 'roxma/nvim-completion-manager'
- "   Plug 'SirVer/ultisnips'
- "   Plug 'honza/vim-snippets'
-"
-"call plug#end()
+call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 
-" Nerd tree:
+  Plug 'preservim/nerdtree'
+  Plug 'ap/vim-css-color'
+
+call plug#end()
+
+" Nerdtree Keybindings:
     map <leader>n :NERDTreeToggle<CR>
+    map <leader>f :NERDTreeFind<space>
 
 " Shortcutting split navigation, saving a keypress:
     nnoremap <C-h> <C-w>h
@@ -76,11 +70,8 @@ set number relativenumber       " Enabling numbers relative
 " Resize split windows using arrow keys by pressing:
     nnoremap <c-up> <c-w>+
     nnoremap <c-down> <c-w>-
-    nnoremap <c-left> <c-w>>
-    nnoremap <c-right> <c-w><
-
-" Check file in shellcheck:
-    map <leader>s :!clear && shellcheck -x %<CR>
+    nnoremap <c-left> <c-w><
+    nnoremap <c-right> <c-w>>
 
 " Replace all is aliased to S:
     nnoremap S :%s//g<Left><Left>
@@ -98,10 +89,5 @@ set number relativenumber       " Enabling numbers relative
      autocmd BufWritePre *.[ch] %s/\%$/\r/e
      autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
-" Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
-if &diff
-    highlight! link DiffText MatchParen
-endif
-
-" Dwmblocks automatically recompile and run when editing the source code:
-    autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make clean install && { killall -q dwmblocks;setsid dwmblocks & }
+" Slstatus automatically recompile and run when editing the source code:
+    autocmd BufWritePost ~/.local/src/slstatus/config.h !cd ~/.local/src/slstatus/; sudo make clean install && { killall -q slstatus;setsid slstatus & }
