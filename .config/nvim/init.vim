@@ -78,6 +78,9 @@ call plug#end()
 " Replace all is aliased to S:
     nnoremap S :%s//g<Left><Left>
 
+" Open terminal in neovim:
+    map <leader>t :terminal<CR>
+
 " Removes pipes | that act as seperators on splits
     set fillchars+=vert:\
 
