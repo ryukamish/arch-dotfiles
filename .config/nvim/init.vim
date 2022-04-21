@@ -52,8 +52,10 @@ set number relativenumber       " Enabling numbers relative
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 
+  Plug 'tpope/vim-surround'
   Plug 'preservim/nerdtree'
   Plug 'ap/vim-css-color'
+  Plug 'tpope/vim-commentary'
 
 call plug#end()
 
@@ -91,3 +93,9 @@ call plug#end()
 
 " Slstatus automatically recompile and run when editing the source code:
     autocmd BufWritePost ~/.local/src/slstatus/config.h !cd ~/.local/src/slstatus/; sudo make clean install && { killall -q slstatus;setsid slstatus & }
+
+" Dmenu auto recompile after editing source code:
+    autocmd BufWritePost ~/.local/src/dmenu/config.h !cd ~/.local/src/dmenu/; sudo make clean install
+
+" St auto recompile after editing source code:
+    autocmd BufWritePost ~/.local/src/st/config.h !cd ~/.local/src/st/; sudo make clean install
