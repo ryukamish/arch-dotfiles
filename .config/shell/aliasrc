@@ -1,6 +1,6 @@
 #Alias
 
-alias c='clear'
+alias cl='clear'
 ##ls alias
 alias ls='ls --group-directories-first --color=auto'
 alias la='ls -a --group-directories-first --color=auto'
