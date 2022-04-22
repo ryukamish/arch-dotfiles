@@ -1,5 +1,13 @@
 $include /etc/inputrc
 set editing-mode vi
+set bell-style none         # MAKE IT STOP
+set keymap vi
+
+# Set up Vim-style tab completion
+TAB: menu-complete
+set show-all-if-ambiguous on
+
+set blink-matching-paren on
 $if mode=vi
 
     set show-mode-in-prompt on
@@ -25,19 +33,3 @@ $if mode=vi
     Control-a: beginning-of-line
 
 $endif
-
-# Set up Vim-style tab completion
-TAB: menu-complete
-set show-all-if-ambiguous on
-
-# If a tab-completed file is a symlink to a directory
-# treat it like a directory not a file
-set mark-symlinked-directories on
-
-# Use GNU ls colors when tab-completing files
-set colored-stats on
-
-# Set completion ignore case
-set completion-ignore-case on
-
-set blink-matching-paren on

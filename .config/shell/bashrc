@@ -6,16 +6,10 @@
 [[ $- != *i* ]] && return
 
 ## Custom BASH PROMPT
-PS1='[\e[1;32m\u\e[0m@  at \@ \w]$ '
-
-## Local bin path added
-[ -r $HOME/.local/bin/ ] && PATH=$PATH:$HOME/.local/bin/
+PS1='\e[2;34m[\e[0m\e[1;32m\u\e[0m@\e[1;35m\H\e[0m  \w\e[2;34m]\e[0m$ '
 
 ## Bash alias file
 [ -f $HOME/.config/shell/aliasrc ] && source $HOME/.config/shell/aliasrc
-
-## inputrc source
-[ -f $HOME/.config/shell/inputrc ] && export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 
 ## bash completion
 [ -f /etc/bash_completion ] && source /etc/bash_completion
