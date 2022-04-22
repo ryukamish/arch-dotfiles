@@ -12,13 +12,13 @@
 " => Assigning mapleader key
 let mapleader =","
 
-" => Basic Settings
+" => Basic Settings [ Vi Compatible (~/.exrc) ]
 
 set nocompatible            " Disable compatibility with vi which cause unexpected issues
 filetype on                 " Enable type file detection
 filetype plugin on          " Enable plugins and load plugin
 filetype indent on          " Load an indent file
-syntax on                   " Turn syntax highlighting
+syntax enable               " Turn syntax highlighting
 set number                  " Adding numbers on left
 set shiftwidth=4            " Set shift width to 4 spaces
 set tabstop=4               " Set tab width to 4 spaces
@@ -29,7 +29,7 @@ set incsearch               " Highlighting matching characters as you type
 set ignorecase              " Ignore capital letters during search
 set smartcase               " search specifically for capital letters
 set showcmd                 " Show partial command in the last line of the screen
-set showmode                " Show matching words during a search
+set showmode                " show command and insert mode
 set nohlsearch              " Use highlighting when doing a search
 set history=1000            " Commands to save in history
 set clipboard=unnamedplus   " To help copy/paste things from here and there
@@ -38,18 +38,18 @@ set wildmode=list,longest,full  " Make wildmenu behave like similar to Bash comp
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set title                   " Sets the title of the file opened
 set path+=**                " To open and jump to another buffer without closing vim
+set ruler                   " turn col and row position on the bottom right
+set autowrite               " automatically write files when changing when multiple files open
+set nofixendofline          " stop vim from Fing files that it shouldn't
+set textwidth=72            " enough for line numbers + gutter within 80 standard
+set icon
+set ttyfast                 " fast scrolling
 
 " Disable auto commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Color Scheme
-colorscheme molokai
-
-" => Fold long files
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
+" Color Scheme:
+    colorscheme jellybeans
 
 " Keybindings for folding files
 "
@@ -59,21 +59,33 @@ augroup END
 " zM => to close all folds
 
 " => Plugins
-" Run the below command for a pluging manager
-" $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" to ~/.vim/autolaod/plug.vim
 
-call plug#begin('~/.vim/plugged')
+" Install vim-plug if not installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs\
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
 
-    Plug 'preservim/nerdtree'
-    Plug 'vim-airline/vim-airline'
-    Plug 'ap/vim-css-color'
-    Plug 'honza/vim-snippets'
-    Plug 'roxma/nvim-completion-manager'
-    Plug 'SirVer/ultisnips'
+" high contrast:
+    set background=dark
 
-call plug#end()
+" only load plugins if Plug detected:
+if filereadable(expand("~/.vim/autoloadd/plug.vim"))
+    " load all the plugins
+    call plug#begin('~/.vim/plugged')
+        Plug 'ap/vim-css-color'
+        Plug 'preservim/nerdtree'
+        Plug 'tpope/vim-surround'
+    call plug#end()
+
+" NerdTree Keybindings:
+    map <leader>n :NERDTreeToggle <CR>
+    map <leader>f :NERDTreeFind<space>
+
+else
+    autocmd vimleavepre *.go !gofmt -w %
+endif
 
 " Map keyboard shortcuts
 " nnoremap => Allows to map keys in normal mode
@@ -93,8 +105,17 @@ nnoremap <c-l> <c-w>l
 " " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
 noremap <c-up> <c-w>+
 noremap <c-down> <c-w>-
-noremap <c-left> <c-w>>
-noremap <c-right> <c-w><
+noremap <c-left> <c-w><
+noremap <c-right> <c-w>>
+
+" Replace all is aliased to S:
+    map S :%s//g<Left><Left>
+
+" Open terminal in vim:
+    map <leader>t :terminal<CR>
+
+" => Removes pipes | that act as seperators on splits
+set fillchars+=vert:\
 
 " => Status Line
 " Clear status line when vimrc is reloaded.
@@ -113,20 +134,18 @@ set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
 set laststatus=2
 
 " => Saving file options
-" Save file as sudo on files that requires root permission
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+" Save file as sudo on files that requires root permission:
+    cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-" Dwmblocks automatically recompile and run when editing the source code:
+" Slstatus automatically recompile and run when editing the source code:
     autocmd BufWritePost ~/.local/src/slstatus/config.h !cd ~/.local/src/slstatus/; sudo make clean install && { killall -q slstatus;setsid slstatus & }
 
-"Mode Settings
+"Mode Settings:
+    let &t_SI ="\e[5 q" "SI = INSERT mode
+    let &t_SR ="\e[4 q" "SR = REPLACE mode
+    let &t_EI ="\e[1 q" "EI = NORMAL mode (ELSE)
 
-let &t_SI ="\e[5 q" "SI = INSERT mode
-let &t_SR ="\e[4 q" "SR = REPLACE mode
-let &t_EI ="\e[1 q" "EI = NORMAL mode (ELSE)
-
-"Cursor settings:
-
+"Cursor settings
 "  1 -> blinking block
 "  2 -> solid block
 "  3 -> blinking underscore
@@ -139,3 +158,10 @@ augroup myCmds
 au!
 autocmd VimEnter * silent !echo -ne "\e[2 q"
 augroup END
+
+" Automatically deletes all trailing whitespace and newlines at end of file on save. & reset cursor position
+autocmd BufWritePre * let currPos = getpos(".")
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre *.[ch] %s/\%$/\r/e
+autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
