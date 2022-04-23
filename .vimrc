@@ -109,7 +109,7 @@ noremap <c-left> <c-w><
 noremap <c-right> <c-w>>
 
 " Replace all is aliased to S:
-    map S :%s//g<Left><Left>
+    map <leader>s :%s//g<Left><Left>
 
 " Open terminal in vim:
     map <leader>t :terminal<CR>
