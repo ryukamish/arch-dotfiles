@@ -51,13 +51,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Color Scheme:
     colorscheme jellybeans
 
-" Keybindings for folding files
-"
-" zo => to open a single fold under the cursor
-" zc => to close the fold under the cursor
-" zR => to open all folds
-" zM => to close all folds
-
 " => Plugins
 
 " Install vim-plug if not installed
@@ -124,12 +117,6 @@ set statusline=
 " Status line left side.
 set statusline+=\ %F\ %M\ %Y\ %R
 
-" Use a divider to separate the left side from the right side.
-set statusline+=%=
-
-" Status line right side.
-set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
-
 " Show the status on the second to last line.
 set laststatus=2
 
@@ -139,25 +126,6 @@ set laststatus=2
 
 " Slstatus automatically recompile and run when editing the source code:
     autocmd BufWritePost ~/.local/src/slstatus/config.h !cd ~/.local/src/slstatus/; sudo make clean install && { killall -q slstatus;setsid slstatus & }
-
-"Mode Settings:
-    let &t_SI ="\e[5 q" "SI = INSERT mode
-    let &t_SR ="\e[4 q" "SR = REPLACE mode
-    let &t_EI ="\e[1 q" "EI = NORMAL mode (ELSE)
-
-"Cursor settings
-"  1 -> blinking block
-"  2 -> solid block
-"  3 -> blinking underscore
-"  4 -> solid underscore
-"  5 -> blinking vertical bar
-"  6 -> solid vertical bar
-
-" reset the cursor on start (for older versions of vim, usually not required)
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
-augroup END
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save. & reset cursor position
 autocmd BufWritePre * let currPos = getpos(".")
