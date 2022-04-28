@@ -14,10 +14,11 @@ alias egrep='egrep --color=auto'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit -m'
-alias gp='git push origin main'
+alias gp='git push origin'
 
 #vim and emacs
-alias nv="nvim"
+_have vim && alias vi=vim
+_have nvim && alias nv="nvim"
 
 # wget
-alias wget='wget -c'
+_have wget && alias wget='wget -c'
