@@ -40,7 +40,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 # ------------------- bash prompt ---------------------------------
 
-export PS1='\e[2;37m\w\e[0m\$\ '
+export PS1='\e[2;37m\w\e[0m \$ '
 
 # ------------------- aliases ------------------------------------
 
