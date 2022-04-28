@@ -46,7 +46,7 @@ set number relativenumber       " Enabling numbers relative
     nnoremap <space> :
 
 " Color scheme
-    colorscheme jellybeans
+    colorscheme 256_noir
 
 " => Plugins
 
@@ -83,6 +83,16 @@ call plug#end()
 
 " Removes pipes | that act as seperators on splits
     set fillchars+=vert:\
+
+" => Status Line
+" Clear status line when init.vim is reloaded.
+    set statusline=
+
+" Status line on left.
+    set statusline+=\ %F\ %M\ %Y\ %R
+
+" Show the status on the second to last line.
+    set statusline=2
 
 " Save file as sudo on files that requires root permission
     cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
