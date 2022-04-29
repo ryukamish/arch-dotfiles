@@ -40,87 +40,52 @@ export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 # ------------------- bash prompt ---------------------------------
 
-export PS1='\e[2;37m\w\e[0m \$ '
+# TODO: create variables for colors.
+prompt=$($PWD/scripts/git-prompt.sh)
+[ -f $prompt ] && . $prompt
+export PS1='\e[2;37m\w\e[0m$(__git_ps1 ":\e[1;31m%s\e[0m") \$ '
 
 # ------------------- aliases ------------------------------------
 
-[ -f $HOME/.config/shell/aliasrc ] && . $HOME/.config/shell/aliasrc
+# comman aliaes
+alias cl='clear'
+##ls alias
+alias ls='ls --group-directories-first --color=auto'
+alias la='ls -a --group-directories-first --color=auto'
+alias ll='ls -lAh --group-directories-first --color=auto'
+##grep alias
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+#vim and emacs
+_have vim && alias vi=vim
+_have nvim && alias nv="nvim"
+# git alias
+_have git && alias gs='git status'
+_have git && alias ga='git add'
+_have git && alias gc='git commit -m'
+_have git && alias gp='git push origin main'
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+# doas aliases
+_have doas && alias doas='doas --'
 
-# ------------------- list of lf icons ----------------------------
-export LF_ICONS="di=📁:\
-fi=📃:\
-tw=🤝:\
-ow=📂:\
-ln=⛓:\
-or=❌:\
-ex=🎯:\
-*.txt=✍:\
-*.mom=✍:\
-*.me=✍:\
-*.ms=✍:\
-*.png=🖼:\
-*.webp=🖼:\
-*.ico=🖼:\
-*.jpg=📸:\
-*.jpe=📸:\
-*.jpeg=📸:\
-*.gif=🖼:\
-*.svg=🗺:\
-*.tif=🖼:\
-*.tiff=🖼:\
-*.xcf=🖌:\
-*.html=🌎:\
-*.xml=📰:\
-*.gpg=🔒:\
-*.css=🎨:\
-*.pdf=📚:\
-*.djvu=📚:\
-*.epub=📚:\
-*.csv=📓:\
-*.xlsx=📓:\
-*.tex=📜:\
-*.md=📘:\
-*.r=📊:\
-*.R=📊:\
-*.rmd=📊:\
-*.Rmd=📊:\
-*.m=📊:\
-*.mp3=🎵:\
-*.opus=🎵:\
-*.ogg=🎵:\
-*.m4a=🎵:\
-*.flac=🎼:\
-*.wav=🎼:\
-*.mkv=🎥:\
-*.mp4=🎥:\
-*.webm=🎥:\
-*.mpeg=🎥:\
-*.avi=🎥:\
-*.mov=🎥:\
-*.mpg=🎥:\
-*.wmv=🎥:\
-*.m4b=🎥:\
-*.flv=🎥:\
-*.zip=📦:\
-*.rar=📦:\
-*.7z=📦:\
-*.tar.gz=📦:\
-*.z64=🎮:\
-*.v64=🎮:\
-*.n64=🎮:\
-*.gba=🎮:\
-*.nes=🎮:\
-*.gdi=🎮:\
-*.1=ℹ:\
-*.nfo=ℹ:\
-*.info=ℹ:\
-*.log=📙:\
-*.iso=📀:\
-*.img=📀:\
-*.bib=🎓:\
-*.ged=👪:\
-*.part=💔:\
-*.torrent=🔽:\
-*.jar=♨:\
-*.java=♨:\
-"
+# ------------------------------- history ---------------------------------------
+
+export HISTCONTROL=ignoreboth
+export HISTSIZE=5000
+export HISTFILESIZE=10000
+
+set -o vi
+shopt -s histappend
+
+# ---------------------------- keyboard ---------------------------------------
+
+_have setxkbmap && test -n "$DISPLAY" && \
+    setxkbmap -option caps:escape &>/dev/null
+_have xset && test -n "$DISPLAY" && \
+    xset r rate 200 40
