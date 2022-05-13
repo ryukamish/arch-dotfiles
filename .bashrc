@@ -3,6 +3,11 @@ case $- in
     *) return ;;
 esac
 
+# ------------------- local utilities --------------------------
+
+_have() { type "$1" &>/dev/null; }
+_source_if() { [[ -r "$1" ]] && source "$1"; }
+
 # ----------------- environment variables -----------------------
 
 export USER="${USER:-$(whoami)}"
@@ -40,10 +45,27 @@ export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 # ------------------- bash prompt ---------------------------------
 
-# TODO: create variables for colors.
-prompt=$($PWD/scripts/git-prompt.sh)
-[ -f $prompt ] && . $prompt
-export PS1='\e[2;37m\w\e[0m$(__git_ps1 ":\e[1;31m%s\e[0m") \$ '
+__ps1() {
+  local P='$' dir="${PWD##*/}" B countme short long double\
+    red='\[\033[31m\]' black='\[\033[30m\]' blue='\[\033[34m\]' \
+    yellow='\[\033[33m\]' purple='\[\033[35m\]' \
+    cyan='\[\033[36m\]' r='\[\033[0m\]' dim='\[\033[2;37m\]'
+
+  [[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
+  [[ $PWD = / ]] && dir=/
+  [[ $PWD = "$HOME" ]] && dir='~'
+
+  B=$(git branch --show-current 2>/dev/null)
+  [[ $dir = "$B" ]] && B=.
+
+  [[ $B = master || $B = main ]] && b="$r"
+  [[ -n "$B" ]] && B="$purple:$r$red$B$r"
+
+  prompt="$dim\W$r$B \$ "
+PS1="$prompt"
+}
+
+PROMPT_COMMAND="__ps1"
 
 # ------------------- aliases ------------------------------------
 
